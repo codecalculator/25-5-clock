@@ -435,7 +435,7 @@ function App() {
 
   return (
     <div id="App">
-    <p id="timer-label">Timer<br/>Is running: {isRunning.toString()},   {sessionOrBreakString()} initialized</p>
+    <p id="timer-label">Timer<br/>Is running: {isRunning.toString()}<br/>{sessionOrBreakString()} initialized</p>
     <div>
       
       
@@ -464,12 +464,12 @@ function App() {
     <br/>
     <br/>
 
-    <audio id="beep" src="./25-5-clock/beep.wav"></audio>
+    <audio id="beep" src="./beep.wav"></audio>
 
     <button onClick={playAudio}>Test Audio</button>
     <br/>
     <br/>
-    <button onClick={setTo0001} >Set to 00:01</button>
+    <button onClick={setTo0001}>Set to 00:01</button>
     <br/>
     <p>Render count: </p>
     
