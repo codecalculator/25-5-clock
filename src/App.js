@@ -435,61 +435,62 @@ function App() {
 
   return (
     <div id="App">
-    <p id="timer-label">Timer<br/>Is running: {isRunning.toString()}<br/>{sessionOrBreakString()} initialized</p>
-    <div>
+      <p>The FreeCodeCamp Tester has incompatibilities with React, some test results do not represent this clock's actual behavior</p>
+      <p id="timer-label">Timer<br/>Is running: {isRunning.toString()}<br/>{sessionOrBreakString()} initialized</p>
+      <div>
+        
+        
+      </div>
       
+
+        <TimeLabel startTime={nextTime} autostart={autostart} getCurrentTime={getCurrentTime} getIsRunning={getIsRunning} />
+        <button onClick={jumpToNext}>Jump to next</button>
+        <button id="reset" onClick={reset}>Reset</button>
+
+        <p></p>
+        {/* {remainingTotalSecs.current} */}
+
+      <div id="break-label">
+        <p>Break Length:</p>
+        <SettingLabel id="break" defaultSetting={defaultBreakMinutes} getSetting={getBreakSetting} getResetter={getBreakResetter} />
+
+      </div>
+
+      <div id="session-label">
+        <p>Session Length:</p>
+
+        <SettingLabel id="session" defaultSetting={defaultSessionMinutes} getSetting={getSessionSetting} getResetter={getSessionResetter} />
+
+      </div>
+      <br/>
+      <br/>
+
+      <audio id="beep" src="./beep.wav"></audio>
+
+      <button onClick={playAudio}>Test Audio</button>
+      <br/>
+      <br/>
+      <button onClick={setTo0001}>Set to 00:01</button>
+      <br/>
+      <p>Render count: {renderCount.current} </p>
       
-    </div>
-    
-
-    <TimeLabel startTime={nextTime} autostart={autostart} getCurrentTime={getCurrentTime} getIsRunning={getIsRunning} />
-    <button onClick={jumpToNext}>Jump to next</button>
-    <button id="reset" onClick={reset}>Reset</button>
-
-    <p></p>
-    {/* {remainingTotalSecs.current} */}
-
-    <div id="break-label">
-      <p>Break Length:</p>
-      <SettingLabel id="break" defaultSetting={defaultBreakMinutes} getSetting={getBreakSetting} getResetter={getBreakResetter} />
-
-    </div>
-
-    <div id="session-label">
-    <p>Session Length:</p>
-
-    <SettingLabel id="session" defaultSetting={defaultSessionMinutes} getSetting={getSessionSetting} getResetter={getSessionResetter} />
-
-    </div>
-    <br/>
-    <br/>
-
-    <audio id="beep" src="./beep.wav"></audio>
-
-    <button onClick={playAudio}>Test Audio</button>
-    <br/>
-    <br/>
-    <button onClick={setTo0001}>Set to 00:01</button>
-    <br/>
-    <p>Render count: {renderCount.current} </p>
-    
 
 
-{/* <span id={"break-label"}>{setting}</span>
-    <div>
-    
-    <button id={incrementButtonID} onClick={handleIncrement}>Increment</button>
-    <button id={decrementButtonID} onClick={handleDecrement}>Decrement</button>
+  {/* <span id={"break-label"}>{setting}</span>
+      <div>
+      
+      <button id={incrementButtonID} onClick={handleIncrement}>Increment</button>
+      <button id={decrementButtonID} onClick={handleDecrement}>Decrement</button>
 
-    </div>
+      </div>
 
-    <span id={settingLabelID}>{setting}</span>
-    
-    <button id={incrementButtonID} onClick={handleIncrement}>Increment</button>
-    <button id={decrementButtonID} onClick={handleDecrement}>Decrement</button>
+      <span id={settingLabelID}>{setting}</span>
+      
+      <button id={incrementButtonID} onClick={handleIncrement}>Increment</button>
+      <button id={decrementButtonID} onClick={handleDecrement}>Decrement</button>
 
- */}
-    <br/>
+  */}
+      <br/>
 
 
     </div>
