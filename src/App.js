@@ -471,7 +471,7 @@ function App() {
     <br/>
     <button onClick={setTo0001}>Set to 00:01</button>
     <br/>
-    <p>Render count: </p>
+    <p>Render count: {renderCount.current} </p>
     
 
 
