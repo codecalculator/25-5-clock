@@ -1,1 +1,0 @@
-{"version":3,"file":"static/css/main.ef4db7dd.css","mappings":"AAAA,UCEI,wBAAyB,CADzB,eDGJ,CAJA,KAGI,UACJ","sources":["App.css","index.css"],"sourcesContent":["#App {\r\n    margin: auto 25%;\r\n    background-color: #d4c644;\r\n    padding: 1%;\r\n}","#app {\r\n    margin: auto 25%;\r\n    background-color: #d4c644;\r\n}"],"names":[],"sourceRoot":""}
