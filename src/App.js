@@ -435,7 +435,7 @@ function App() {
 
   return (
     <div id="App">
-      <p>The FreeCodeCamp Tester has incompatibilities with React, some test results do not represent this clock's actual behavior</p>
+      <p id="fcc-test-note"><strong>The FreeCodeCamp Tester has incompatibilities with React, some test results do not represent this clock's actual behavior</strong></p>
       <p id="timer-label">Timer<br/>Is running: {isRunning.toString()}<br/>{sessionOrBreakString()} initialized</p>
       <div>
         

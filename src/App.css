@@ -3,3 +3,9 @@
     background-color: #d4c644;
     padding: 1%;
 }
+
+#fcc-test-note {
+    color: red;
+    background-color: greenyellow;
+    font-style: bold;
+}
