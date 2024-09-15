@@ -221,7 +221,7 @@ const TimeLabel = ({startTime, autostart, getCurrentTime, getIsRunning}) => {
 
   //console.log("fdsfd");
   // console.log(remainingTotalSecs.current)
-  console.log("display: " + display);
+  //console.log("display: " + display);
   return <>
   <span id="time-left">{display}</span>
   <br/>
@@ -258,7 +258,11 @@ function App() {
   const [currentTime, setCurrentTime] = useState(nextTime);
   const cT = useRef(nT);
 
-  const isRunning = useRef(autostart);
+  //const isRunning = useRef(autostart);
+  const [isRunning, setIsRunning] = useState(autostart);
+
+  const sound = document.getElementById("beep");
+
 
 
 
@@ -296,7 +300,7 @@ function App() {
 
   function getCurrentTime(time) {
     cT.current = time;
-    //setCurrentTime(time);
+    setCurrentTime(time);
     //console.log("App: time.m: "  + time.m + ", time.s: " + time.s);
     //console.log("getCurrentTime in App, currentTime.m: "  + currentTime.m + ", currentTime.s: " + currentTime.s);
     //console.log("getCurrentTime in App, cT.current.m: "  + cT.current.m + ", cT.current.s: " + cT.current.s);
@@ -323,11 +327,12 @@ function App() {
     setAutostart(true);
 
 
+
   }
 
   
     function updateTimeLive() {
-      if (!isRunning.current) {
+      if (!isRunning) {
         updateTime();
         console.log("updateTimeLive(), !isRunning.current == true");
         setAutostart(false);
@@ -348,19 +353,26 @@ function App() {
   
 
   useEffect(() => {
-    setNextTime(nT.current);
+    //setNextTime(nT.current);
     //console.log("useEffect in App, currentTime.m: "  + currentTime.m + ", currentTime.s: " + currentTime.s);
     //console.log("nextTime.m in useEffect: ", nextTime.m);
     //console.log("nT.current.m in useEffect: ", nT.current.m);
-   
-    if (currentTime.m === 0 && currentTime.s === 0) {
+    console.log("hkdsfkdjfdf");   
+
+    if (cT.current.m == 0 && cT.current.s == 0) {
       console.log("reached zero");
       jumpToNext();
+      playAudio();
   
     } else {
-      //console.log("not zero yet");
+      console.log("not zero yet");
     }
-  }, [currentTime.s, cT.current.s]);
+  }, [cT.current]);
+
+  function playAudio() {
+    document.getElementById("beep").play();
+
+  }
 
 
     const resetBreak = useRef();
@@ -385,13 +397,16 @@ function App() {
       updateTime();
       resetBreak.current();
       resetSession.current();
+      //isRunning.current = false;
+      setIsRunning(false);
       console.log("reset() ended, renderCount: " + renderCount.current);
+      stopAudio();
     }
 
 
 
     function getIsRunning(boolean) {
-      isRunning.current = boolean;
+      setIsRunning(boolean);
       //console.log("getIsRunning(boolean), boolean: " + boolean);
     
     }
@@ -404,6 +419,15 @@ function App() {
       }
     }
 
+    function setTo0001() {
+      setNextTime({m: 0, s: 1});
+    }
+
+    function stopAudio() {
+      sound.pause();
+      sound.currentTime = 0;
+    }
+
 
  
 
@@ -411,21 +435,19 @@ function App() {
 
   return (
     <div id="App">
-    <p id="timer-label">Timer<br/>Is running: {isRunning.current.toString()},   {sessionOrBreakString()} </p>
+    <p id="timer-label">Timer<br/>Is running: {isRunning.toString()},   {sessionOrBreakString()} initialized</p>
     <div>
       
       
     </div>
-    <br/>
+    
 
-    <TimeLabel startTime={nT.current} autostart={autostart} getCurrentTime={getCurrentTime} getIsRunning={getIsRunning} />
+    <TimeLabel startTime={nextTime} autostart={autostart} getCurrentTime={getCurrentTime} getIsRunning={getIsRunning} />
     <button onClick={jumpToNext}>Jump to next</button>
     <button id="reset" onClick={reset}>Reset</button>
 
     <p></p>
     {/* {remainingTotalSecs.current} */}
-    <br/>
-    {renderCount.current++}
 
     <div id="break-label">
       <p>Break Length:</p>
@@ -439,6 +461,17 @@ function App() {
     <SettingLabel id="session" defaultSetting={defaultSessionMinutes} getSetting={getSessionSetting} getResetter={getSessionResetter} />
 
     </div>
+    <br/>
+    <br/>
+
+    <audio id="beep" src="./25-5-clock/beep.wav"></audio>
+
+    <button onClick={playAudio}>Test Audio</button>
+    <br/>
+    <br/>
+    <button onClick={setTo0001} >Set to 00:01</button>
+    <br/>
+    <p>Render count: </p>
     
 
 
